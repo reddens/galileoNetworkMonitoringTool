@@ -73,7 +73,7 @@ class NetworkGraphWidget(GridLayout):
         return interface, ip_address, bytes_sent, bytes_recv
 
     # Define a function to update the network graph and labels
-    def update_graph(self, dt=1):
+    def update_graph(self, dt=0.4):
         interface, ip_address, bytes_sent, bytes_recv = self.get_network_usage()
         prev_bytes_sent = self.bytes_sent_history[-1]
         prev_bytes_recv = self.bytes_recv_history[-1]
@@ -87,13 +87,14 @@ class NetworkGraphWidget(GridLayout):
         self.upload_speed_history.append(upload_speed)
         self.download_speed_history.append(download_speed)
         data = pd.DataFrame(
-            {
-                'Time': self.time,
-                'Upload': self.upload_speed_history,
-                'Download': self.download_speed_history,
-            }
+        {
+            'Time': self.time[-300:],
+            'Upload': self.upload_speed_history[-300:],
+            'Download': self.download_speed_history[-300:],
+        }
         )
         self.ax.clear()
+        self.ax.set_xlim(self.time[-1]-30, self.time[-1])
         self.ax.plot(data['Time'], data['Upload'], label='Upload')
         self.ax.plot(data['Time'], data['Download'], label='Download')
         self.ax.legend()
@@ -107,8 +108,8 @@ class NetworkGraphWidget(GridLayout):
         self.ip_address_label.text = f'IP Address: {ip_address}'
         self.upload_speed_label.text = f'Upload Speed: {upload_speed/1024:.2f} KB/s'
         self.download_speed_label.text = f'Download Speed: {download_speed/1024:.2f} KB/s'
-        self.bytes_sent_label.text = f'Bytes Sent: {bytes_sent}'
-        self.bytes_recv_label.text = f'Bytes Recieved: {bytes_recv}'
+        self.bytes_sent_label.text = f'Bytes Sent: {bytes_sent//1024} KB'
+        self.bytes_recv_label.text = f'Bytes Recieved: {bytes_recv//1024} KB'
 
 
         # Schedule the next update
