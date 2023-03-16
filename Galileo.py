@@ -45,7 +45,7 @@ class NetworkGraphWidget(GridLayout):
         self.add_widget(self.bytes_recv_label)
         
 
-     # Add start and stop buttons
+    # Add start and stop buttons
         self.start_button = Button(text='Start', disabled=True)
         self.start_button.bind(on_press=self.start_update_graph)
         self.add_widget(self.start_button)
@@ -89,13 +89,13 @@ class NetworkGraphWidget(GridLayout):
         data = pd.DataFrame(
             {
                 'Time': self.time,
-                'Bytes Sent': self.bytes_sent_history,
-                'Bytes Received': self.bytes_recv_history,
+                'Upload': self.upload_speed_history,
+                'Download': self.download_speed_history,
             }
         )
         self.ax.clear()
-        self.ax.plot(data['Time'], data['Bytes Sent'], label='Bytes Sent')
-        self.ax.plot(data['Time'], data['Bytes Received'], label='Bytes Received')
+        self.ax.plot(data['Time'], data['Upload'], label='Upload')
+        self.ax.plot(data['Time'], data['Download'], label='Download')
         self.ax.legend()
         self.fig.canvas.draw()
         self.fig.canvas.flush_events()
@@ -105,8 +105,8 @@ class NetworkGraphWidget(GridLayout):
         # Update the labels with the network parameters
         self.interface_label.text = f'Interface: {interface}'
         self.ip_address_label.text = f'IP Address: {ip_address}'
-        self.upload_speed_label.text = f'Upload Speed: {upload_speed}'
-        self.download_speed_label.text = f'Download Speed: {download_speed}'
+        self.upload_speed_label.text = f'Upload Speed: {upload_speed/1024:.2f} KB/s'
+        self.download_speed_label.text = f'Download Speed: {download_speed/1024:.2f} KB/s'
         self.bytes_sent_label.text = f'Bytes Sent: {bytes_sent}'
         self.bytes_recv_label.text = f'Bytes Recieved: {bytes_recv}'
 
