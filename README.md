@@ -33,10 +33,10 @@ pip install kivy psutil pandas matplotlib
 
 ## Usage
 
-To run the Galileo Network Monitoring Tool, navigate to the directory where the `galileo_network_monitoring_tool.py` file is located and run the following command:
+To run the Galileo Network Monitoring Tool, navigate to the directory where the `Galileo.py` file is located and run the following command:
 
 ```bash
-python galileo_network_monitoring_tool.py
+python Galileo.py
 ```
 
 The program will display a graph of the network usage and various network parameters, such as the interface, IP address, upload and download speeds, and bytes sent and received. You can start and stop the data collection by clicking the "Start" and "Stop" buttons, respectively.
