@@ -43,7 +43,7 @@ The program will display a graph of the network usage and various network parame
 
 ## Credits
 
-The Galileo Network Monitoring Tool was created by [Your Name Here]. The program uses the following Python packages:
+The Galileo Network Monitoring Tool was created by CYril Oaks (Yours trulY). The program uses the following Python packages:
 
 - Kivy: https://kivy.org/
 - Psutil: https://psutil.readthedocs.io/en/latest/
