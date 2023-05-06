@@ -31,6 +31,16 @@ You can install these packages using pip, the Python package manager, by running
 pip install kivy psutil pandas matplotlib
 ```
 
+You will also need to install Kivy Garden and install matplotlib with the Kivy Garden installer. :-)
+
+```bash
+pip install kivy-garden
+```
+
+```bash
+garden install matplotlib
+```
+
 ## Usage
 
 To run the Galileo Network Monitoring Tool, navigate to the directory where the `Galileo.py` file is located and run the following command:
